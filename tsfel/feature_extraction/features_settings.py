@@ -52,6 +52,18 @@ def get_features_by_domain(domain=None, json_path=None):
         return {domain: dict_features[domain]}
 
 
+def standard_statistical_features():
+    stats_dict = {"Mean": tsfel.calc_mean, "Max": tsfel.calc_max, "Min": tsfel.calc_min, "Var": tsfel.calc_var,
+                  "Std": tsfel.calc_std, "Median": tsfel.calc_median, "kurtosis": tsfel.kurtosis,
+                  "skewness": tsfel.skewness, "iqr": tsfel.interq_range, "Mean-abs-dev": tsfel.mean_abs_deviation,
+                  "rms": tsfel.rms}
 
+    return stats_dict
+
+
+def standard_temporal_features():
+    temp_dict = {"Abs energy": tsfel.abs_energy}
+
+    return temp_dict
 
 

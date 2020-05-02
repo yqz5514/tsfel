@@ -1603,16 +1603,14 @@ def wavelet_stats(signal, function=scipy.signal.ricker, widths=np.arange(1, 10))
     """
     cwt = wavelet(signal, function, widths)
 
-    # TODO can be a function input
-    tsfel_names = ["Mean", "Max", "Min", "Var", "Std"]
-    tsfel_func = [tsfel.calc_mean, tsfel.calc_max, tsfel.calc_min, tsfel.calc_var, tsfel.calc_std]
+    stats_func = tsfel.standard_statistical_features()
 
     # stats
     feat_res = {}
     for w, signal in enumerate(cwt):
-        for i in range(len(tsfel_func)):
-            value = tsfel_func[i](signal)
-            feat_res["Wavelet_" + str(w) + '_' + tsfel_names[i]] = value
+        for name, func in stats_func.items():
+            value = func(signal)
+            feat_res["Wavelet_" + str(w) + '_' + name] = value
         # energy
         feat_res["Wavelet_energy_" + str(w) ] = np.sqrt(np.sum(signal ** 2) / len(signal))
 
