@@ -195,16 +195,6 @@
       },
       "use": "no"
     },
-    "Wavelet absolute mean": {
-      "complexity": "linear",
-      "description": "Computes CWT absolute mean value of each wavelet scale.",
-      "function": "tsfel.wavelet_abs_mean",
-      "parameters": {
-        "function": "scipy.signal.ricker",
-        "widths": "np.arange(1,10)"
-      },
-      "use": "no"
-    },
     "Wavelet stats": {
       "complexity": "linear",
       "description": "Computes CWT stats of each wavelet scale.",

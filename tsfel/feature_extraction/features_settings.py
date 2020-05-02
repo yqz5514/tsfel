@@ -62,8 +62,8 @@ def standard_statistical_features():
 
 
 def standard_temporal_features():
-    temp_dict = {"Abs energy": tsfel.abs_energy}
+    temp_dict = {"autocorr": tsfel.autocorr, "Max peaks": tsfel.maxpeaks, "Mean abs diff": tsfel.mean_abs_diff,
+                 "Mean diff": tsfel.mean_diff, "Min peaks": tsfel.minpeaks, "Slope": tsfel.slope,
+                 "zero cross rate": tsfel.zero_cross, "Abs energy": tsfel.abs_energy}
 
     return temp_dict
-
-

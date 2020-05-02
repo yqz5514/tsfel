@@ -1552,31 +1552,6 @@ def spectral_entropy(signal, fs):
 
 
 @set_domain("domain", "spectral")
-def wavelet_abs_mean(signal, function=scipy.signal.ricker, widths=np.arange(1, 10)):
-    """Computes CWT absolute mean value of each wavelet scale.
-
-    Feature computational cost: 2
-
-    Parameters
-    ----------
-    signal : nd-array
-        Input from which CWT is computed
-    function :  wavelet function
-        Default: scipy.signal.ricker
-    widths :  nd-array
-        Widths to use for transformation
-        Default: np.arange(1,10)
-
-    Returns
-    -------
-    tuple
-        CWT absolute mean value
-
-    """
-    return tuple(np.abs(np.mean(wavelet(signal, function, widths), axis=1)))
-
-
-@set_domain("domain", "spectral")
 def wavelet_stats(signal, function=scipy.signal.ricker, widths=np.arange(1, 10)):
     """Computes CWT stats of each wavelet scale.
 
@@ -1603,7 +1578,8 @@ def wavelet_stats(signal, function=scipy.signal.ricker, widths=np.arange(1, 10))
     """
     cwt = wavelet(signal, function, widths)
 
-    stats_func = tsfel.standard_statistical_features()
+    # stats_func = tsfel.standard_statistical_features()
+    stats_func = {"Mean": tsfel.calc_mean, "Var": tsfel.calc_var, "Std": tsfel.calc_std}
 
     # stats
     feat_res = {}
