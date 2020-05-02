@@ -8,7 +8,7 @@
         "fs": 100,
         "nfreq": 256
       },
-      "use": "yes"
+      "use": "no"
     },
     "Fundamental frequency": {
       "complexity": "log",
@@ -17,7 +17,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Human range energy": {
       "complexity": "log",
@@ -26,7 +26,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "LPCC": {
       "complexity": "log",
@@ -35,7 +35,7 @@
       "parameters": {
         "n_coeff": 12
       },
-      "use": "yes"
+      "use": "no"
     },
     "MFCC": {
       "complexity": "constant",
@@ -49,7 +49,7 @@
         "num_ceps": 12,
         "pre_emphasis": 0.97
       },
-      "use": "yes"
+      "use": "no"
     },
     "Max power spectrum": {
       "complexity": "log",
@@ -58,7 +58,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Maximum frequency": {
       "complexity": "log",
@@ -67,7 +67,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Median frequency": {
       "complexity": "log",
@@ -76,7 +76,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Power bandwidth": {
       "complexity": "log",
@@ -85,7 +85,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Spectral centroid": {
       "complexity": "linear",
@@ -94,7 +94,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Spectral decrease": {
       "complexity": "log",
@@ -103,7 +103,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Spectral distance": {
       "complexity": "log",
@@ -112,7 +112,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Spectral entropy": {
       "complexity": "log",
@@ -121,7 +121,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Spectral kurtosis": {
       "complexity": "linear",
@@ -130,7 +130,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Spectral maximum peaks": {
       "complexity": "log",
@@ -139,7 +139,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Spectral roll-off": {
       "complexity": "log",
@@ -148,7 +148,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Spectral roll-on": {
       "complexity": "log",
@@ -157,7 +157,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Spectral skewness": {
       "complexity": "linear",
@@ -166,7 +166,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Spectral slope": {
       "complexity": "log",
@@ -175,7 +175,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Spectral spread": {
       "complexity": "linear",
@@ -184,7 +184,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Spectral variation": {
       "complexity": "log",
@@ -193,7 +193,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Wavelet absolute mean": {
       "complexity": "linear",
@@ -203,42 +203,12 @@
         "function": "scipy.signal.ricker",
         "widths": "np.arange(1,10)"
       },
-      "use": "yes"
+      "use": "no"
     },
-    "Wavelet energy": {
+    "Wavelet stats": {
       "complexity": "linear",
-      "description": "Computes CWT energy of each wavelet scale.",
-      "function": "tsfel.wavelet_energy",
-      "parameters": {
-        "function": "scipy.signal.ricker",
-        "widths": "np.arange(1,10)"
-      },
-      "use": "yes"
-    },
-    "Wavelet entropy": {
-      "complexity": "linear",
-      "description": "Computes CWT entropy of the signal.",
-      "function": "tsfel.wavelet_entropy",
-      "parameters": {
-        "function": "scipy.signal.ricker",
-        "widths": "np.arange(1,10)"
-      },
-      "use": "yes"
-    },
-    "Wavelet standard deviation": {
-      "complexity": "linear",
-      "description": "Computes CWT std value of each wavelet scale.",
-      "function": "tsfel.wavelet_std",
-      "parameters": {
-        "function": "scipy.signal.ricker",
-        "widths": "np.arange(1,10)"
-      },
-      "use": "yes"
-    },
-    "Wavelet variance": {
-      "complexity": "linear",
-      "description": "Computes CWT variance value of each wavelet scale.",
-      "function": "tsfel.wavelet_var",
+      "description": "Computes CWT stats of each wavelet scale.",
+      "function": "tsfel.wavelet_stats",
       "parameters": {
         "function": "scipy.signal.ricker",
         "widths": "np.arange(1,10)"
@@ -254,7 +224,7 @@
       "parameters": {
         "d": 10
       },
-      "use": "yes"
+      "use": "no"
     },
     "ECDF Percentile": {
       "complexity": "log",
@@ -263,7 +233,7 @@
       "parameters": {
         "percentile": null
       },
-      "use": "yes"
+      "use": "no"
     },
     "ECDF Percentile Count": {
       "complexity": "log",
@@ -272,7 +242,7 @@
       "parameters": {
         "percentile": null
       },
-      "use": "yes"
+      "use": "no"
     },
     "ECDF Slope": {
       "complexity": "log",
@@ -282,16 +252,17 @@
         "p_end": 0.75,
         "p_init": 0.5
       },
-      "use": "yes"
+      "use": "no"
     },
     "Histogram": {
       "complexity": "log",
       "description": "Computes histogram of the signal.",
       "function": "tsfel.hist",
       "parameters": {
-        "nbins": 10,
+        "nbins": 4,
         "r": 1
       },
+      "output_names": ["a", "b","c", "d"],
       "use": "yes"
     },
     "Interquartile range": {
@@ -299,84 +270,84 @@
       "description": "Computes interquartile range of the signal.",
       "function": "tsfel.interq_range",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Kurtosis": {
       "complexity": "constant",
       "description": "Computes kurtosis of the signal.",
       "function": "tsfel.kurtosis",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Max": {
       "complexity": "constant",
       "description": "Computes the maximum value of the signal.",
       "function": "tsfel.calc_max",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Mean": {
       "complexity": "constant",
       "description": "Computes the mean value of the signal.",
       "function": "tsfel.calc_mean",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Mean absolute deviation": {
       "complexity": "log",
       "description": "Computes mean absolute deviation of the signal.",
       "function": "tsfel.mean_abs_deviation",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Median": {
       "complexity": "constant",
       "description": "Computes median of the signal.",
       "function": "tsfel.calc_median",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Median absolute deviation": {
       "complexity": "constant",
       "description": "Computes median absolute deviation of the signal.",
       "function": "tsfel.median_abs_deviation",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Min": {
       "complexity": "constant",
       "description": "Computes the minimum value of the signal.",
       "function": "tsfel.calc_min",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Root mean square": {
       "complexity": "constant",
       "description": "Computes root mean square of the signal.",
       "function": "tsfel.rms",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Skewness": {
       "complexity": "constant",
       "description": "Computes skewness of the signal.",
       "function": "tsfel.skewness",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Standard deviation": {
       "complexity": "constant",
       "description": "Computes standard deviation of the signal.",
       "function": "tsfel.calc_std",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Variance": {
       "complexity": "constant",
       "description": "Computes variance of the signal.",
       "function": "tsfel.calc_var",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     }
   },
   "temporal": {
@@ -385,7 +356,7 @@
       "description": "Computes the absolute energy of the signal.",
       "function": "tsfel.abs_energy",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Area under the curve": {
       "complexity": "log",
@@ -394,14 +365,14 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Autocorrelation": {
       "complexity": "constant",
       "description": "Computes autocorrelation of the signal.",
       "function": "tsfel.autocorr",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Centroid": {
       "complexity": "constant",
@@ -410,7 +381,7 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Entropy": {
       "complexity": "log",
@@ -419,77 +390,77 @@
       "parameters": {
         "prob": "standard"
       },
-      "use": "yes"
+      "use": "no"
     },
     "Maximum peaks": {
       "complexity": "constant",
       "description": "Computes number of maximum peaks of the signal.",
       "function": "tsfel.maxpeaks",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Mean absolute diff": {
       "complexity": "constant",
       "description": "Computes mean absolute differences of the signal.",
       "function": "tsfel.mean_abs_diff",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Mean diff": {
       "complexity": "constant",
       "description": "Computes mean of differences of the signal.",
       "function": "tsfel.mean_diff",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Median absolute diff": {
       "complexity": "constant",
       "description": "Computes median absolute differences of the signal.",
       "function": "tsfel.median_abs_diff",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Median diff": {
       "complexity": "constant",
       "description": "Computes median of differences of the signal.",
       "function": "tsfel.median_diff",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Minimum peaks": {
       "complexity": "constant",
       "description": "Computes number of minimum peaks of the signal.",
       "function": "tsfel.minpeaks",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Peak to peak distance": {
       "complexity": "constant",
       "description": "Computes the peak to peak distance.",
       "function": "tsfel.pk_pk_distance",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Signal distance": {
       "complexity": "constant",
       "description": "Computes signal traveled distance.",
       "function": "tsfel.distance",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Slope": {
       "complexity": "log",
       "description": "Computes the slope of the signal by fitting a linear equation to the observed data.",
       "function": "tsfel.slope",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Sum absolute diff": {
       "complexity": "constant",
       "description": "Computes sum of absolute differences of the signal.",
       "function": "tsfel.sum_abs_diff",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     },
     "Total energy": {
       "complexity": "constant",
@@ -498,14 +469,14 @@
       "parameters": {
         "fs": 100
       },
-      "use": "yes"
+      "use": "no"
     },
     "Zero crossing rate": {
       "complexity": "constant",
       "description": "Computes Zero-crossing rate of the signal.",
       "function": "tsfel.zero_cross",
       "parameters": "",
-      "use": "yes"
+      "use": "no"
     }
   }
 }

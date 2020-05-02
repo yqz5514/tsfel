@@ -336,7 +336,11 @@ def calc_window_features(dict_features, signal_window, fs, **kwargs):
                     eval_result = eval(execf, locals())
 
                     # Function returns more than one element
-                    if type(eval_result) == tuple:
+                    if type(eval_result) == dict:
+                        for k, v in eval_result.items():
+                            feature_results += [v]
+                            feature_names += [str(header_names[ax]) + '_' + k]
+                    elif type(eval_result) == tuple:
                         if np.isnan(eval_result[0]):
                             eval_result = np.zeros(len(eval_result))
                         for rr in range(len(eval_result)):

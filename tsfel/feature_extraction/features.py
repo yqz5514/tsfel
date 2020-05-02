@@ -1,3 +1,4 @@
+import tsfel
 import scipy.signal
 from tsfel.feature_extraction.features_utils import *
 
@@ -1255,6 +1256,7 @@ def spectral_maxpeaks(signal, fs):
 
     return len(max_s_peaks)
 
+
 @set_domain("domain", "spectral")
 def spectral_roll_off(signal, fs):
     """Computes the spectral roll-off of the signal.
@@ -1550,44 +1552,6 @@ def spectral_entropy(signal, fs):
 
 
 @set_domain("domain", "spectral")
-def wavelet_entropy(signal, function=scipy.signal.ricker, widths=np.arange(1, 10)):
-    """Computes CWT entropy of the signal.
-
-    Implementation details in:
-    https://dsp.stackexchange.com/questions/13055/how-to-calculate-cwt-shannon-entropy
-    B.F. Yan, A. Miyamoto, E. Bruhwiler, Wavelet transform-based modal parameter identification considering uncertainty
-
-    Feature computational cost: 2
-
-    Parameters
-    ----------
-    signal : nd-array
-        Input from which CWT is computed
-    function :  wavelet function
-        Default: scipy.signal.ricker
-    widths :  nd-array
-        Widths to use for transformation
-        Default: np.arange(1,10)
-
-    Returns
-    -------
-    float
-        wavelet entropy
-
-    """
-    if np.sum(signal) == 0:
-        return 0.0
-
-    cwt = wavelet(signal, function, widths)
-    energy_scale = np.sum(np.abs(cwt), axis=1)
-    t_energy = np.sum(energy_scale)
-    prob = energy_scale / t_energy
-    w_entropy = -np.sum(prob * np.log(prob))
-
-    return w_entropy
-
-
-@set_domain("domain", "spectral")
 def wavelet_abs_mean(signal, function=scipy.signal.ricker, widths=np.arange(1, 10)):
     """Computes CWT absolute mean value of each wavelet scale.
 
@@ -1613,58 +1577,8 @@ def wavelet_abs_mean(signal, function=scipy.signal.ricker, widths=np.arange(1, 1
 
 
 @set_domain("domain", "spectral")
-def wavelet_std(signal, function=scipy.signal.ricker, widths=np.arange(1, 10)):
-    """Computes CWT std value of each wavelet scale.
-
-    Feature computational cost: 2
-
-    Parameters
-    ----------
-    signal : nd-array
-        Input from which CWT is computed
-    function :  wavelet function
-        Default: scipy.signal.ricker
-    widths :  nd-array
-        Widths to use for transformation
-        Default: np.arange(1,10)
-
-    Returns
-    -------
-    tuple
-        CWT std
-
-    """
-    return tuple((np.std(wavelet(signal, function, widths), axis=1)))
-
-
-@set_domain("domain", "spectral")
-def wavelet_var(signal, function=scipy.signal.ricker, widths=np.arange(1, 10)):
-    """Computes CWT variance value of each wavelet scale.
-
-    Feature computational cost: 2
-
-    Parameters
-    ----------
-    signal : nd-array
-        Input from which CWT is computed
-    function :  wavelet function
-        Default: scipy.signal.ricker
-    widths :  nd-array
-        Widths to use for transformation
-        Default: np.arange(1,10)
-
-    Returns
-    -------
-    tuple
-        CWT variance
-
-    """
-    return tuple((np.var(wavelet(signal, function, widths), axis=1)))
-
-
-@set_domain("domain", "spectral")
-def wavelet_energy(signal, function=scipy.signal.ricker, widths=np.arange(1, 10)):
-    """Computes CWT energy of each wavelet scale.
+def wavelet_stats(signal, function=scipy.signal.ricker, widths=np.arange(1, 10)):
+    """Computes CWT stats of each wavelet scale.
 
     Implementation details:
     https://stackoverflow.com/questions/37659422/energy-for-1-d-wavelet-in-python
@@ -1675,7 +1589,7 @@ def wavelet_energy(signal, function=scipy.signal.ricker, widths=np.arange(1, 10)
     ----------
     signal : nd-array
         Input from which CWT is computed
-    function :  wavelet function
+    function :  wavewalet function
         Default: scipy.signal.ricker
     widths :  nd-array
         Widths to use for transformation
@@ -1683,11 +1597,31 @@ def wavelet_energy(signal, function=scipy.signal.ricker, widths=np.arange(1, 10)
 
     Returns
     -------
-    tuple
-        CWT energy
+    dict
+        CWT stats
 
     """
     cwt = wavelet(signal, function, widths)
-    energy = np.sqrt(np.sum(cwt ** 2, axis=1) / np.shape(cwt)[1])
 
-    return tuple(energy)
+    # TODO can be a function input
+    tsfel_names = ["Mean", "Max", "Min", "Var", "Std"]
+    tsfel_func = [tsfel.calc_mean, tsfel.calc_max, tsfel.calc_min, tsfel.calc_var, tsfel.calc_std]
+
+    # stats
+    feat_res = {}
+    for w, signal in enumerate(cwt):
+        for i in range(len(tsfel_func)):
+            value = tsfel_func[i](signal)
+            feat_res["Wavelet_" + str(w) + '_' + tsfel_names[i]] = value
+        # energy
+        feat_res["Wavelet_energy_" + str(w) ] = np.sqrt(np.sum(signal ** 2) / len(signal))
+
+    # entropy
+    energy_scale = np.sum(np.abs(cwt), axis=1)
+    t_energy = np.sum(energy_scale)
+    prob = energy_scale / t_energy
+    w_entropy = -np.sum(prob * np.log(prob))
+
+    feat_res["Wavelet_entropy"] = w_entropy
+
+    return feat_res
