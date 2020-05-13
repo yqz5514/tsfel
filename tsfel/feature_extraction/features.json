@@ -132,10 +132,10 @@
       },
       "use": "no"
     },
-    "Spectral maximum peaks": {
+    "Spectral positive turning points": {
       "complexity": "log",
-      "description": "Computes the number of maximum spectral peaks.",
-      "function": "tsfel.spectral_maxpeaks",
+      "description": "Computes number of positive turning points of the fft magnitude signal",
+      "function": "tsfel.spectral_positive_turning",
       "parameters": {
         "fs": 100
       },
@@ -382,10 +382,10 @@
       },
       "use": "no"
     },
-    "Maximum peaks": {
+    "Positive turning points": {
       "complexity": "constant",
-      "description": "Computes number of maximum peaks of the signal.",
-      "function": "tsfel.maxpeaks",
+      "description": "Computes number of positive turning points of the signal.",
+      "function": "tsfel.positive_turning",
       "parameters": "",
       "use": "no"
     },
@@ -417,10 +417,10 @@
       "parameters": "",
       "use": "no"
     },
-    "Minimum peaks": {
+    "Negative turning points": {
       "complexity": "constant",
-      "description": "Computes number of minimum peaks of the signal.",
-      "function": "tsfel.minpeaks",
+      "description": "Computes number of negative turning points of the signal.",
+      "function": "tsfel.negative_turning",
       "parameters": "",
       "use": "no"
     },
