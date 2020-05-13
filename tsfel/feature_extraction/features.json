@@ -252,7 +252,6 @@
         "nbins": 4,
         "r": 1
       },
-      "output_names": ["a", "b","c", "d"],
       "use": "yes"
     },
     "Interquartile range": {
