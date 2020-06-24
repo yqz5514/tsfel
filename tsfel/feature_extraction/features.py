@@ -407,11 +407,42 @@ def entropy(signal, prob='standard'):
     # Handling zero probability values
     p = p[np.where(p != 0)]
 
-    if np.sum(p * np.log2(p)) / np.log2(len(signal)) == 0:
+    # If probability all in one value, there is no entropy
+    if np.log2(len(signal)) == 1:
+        return 0.0
+    elif np.sum(p * np.log2(p)) / np.log2(len(signal)) == 0:
         return 0.0
     else:
         return - np.sum(p * np.log2(p)) / np.log2(len(signal))
 
+
+@set_domain("domain", "temporal")
+def neighbourhood_peaks(signal, n=10):
+    """Computes the number of peaks from a defined neighbourhood of the signal.
+
+    Reference: Christ, M., Braun, N., Neuffer, J. and Kempa-Liehr A.W. (2018). Time Series FeatuRe Extraction on basis
+     of Scalable Hypothesis tests (tsfresh -- A Python package). Neurocomputing 307 (2018) 72-77
+
+    Parameters
+    ----------
+    signal : nd-array
+         Input from which the number of neighbourhood peaks is computed
+    n :  int
+        Number of peak's neighbours to the left and to the right
+
+    Returns
+    -------
+    int
+        The number of peaks from a defined neighbourhood of the signal
+    """
+    signal = np.array(signal)
+    subsequence = signal[n:-n]
+    # initial iteration
+    peaks = ((subsequence > np.roll(signal, 1)[n:-n]) & (subsequence > np.roll(signal, -1)[n:-n]))
+    for i in range(2, n + 1):
+        peaks &= (subsequence > np.roll(signal, i)[n:-n])
+        peaks &= (subsequence > np.roll(signal, -i)[n:-n])
+    return np.sum(peaks)
 
 # ############################################ STATISTICAL DOMAIN #################################################### #
 
@@ -1507,7 +1538,7 @@ def lpcc(signal, n_coeff=12):
     lpc_coeffs = lpc(signal, n_coeff)
 
     if np.sum(lpc_coeffs) == 0:
-        return tuple(np.zeros(n_coeff))
+        return tuple(np.zeros(len(lpc_coeffs)))
 
     # Power spectrum
     powerspectrum = np.abs(np.fft.fft(lpc_coeffs)) ** 2
@@ -1549,9 +1580,14 @@ def spectral_entropy(signal, fs):
 
     prob = prob[prob != 0]
 
+    # If probability all in one value, there is no entropy
+    if prob.size == 1:
+        return 0.0
+
     return -np.multiply(prob, np.log2(prob)).sum() / np.log2(prob.size)
 
 
+# TODO statistical features can be a input parameter
 @set_domain("domain", "spectral")
 def wavelet_stats(signal, function=scipy.signal.ricker, widths=np.arange(1, 10)):
     """Computes CWT stats of each wavelet scale.

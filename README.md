@@ -1,4 +1,4 @@
-[![Documentation Status](https://readthedocs.org/projects/tsfel/badge/?version=latest)](https://tsfel.readthedocs.io/en/development/)
+[![Documentation Status](https://readthedocs.org/projects/tsfel/badge/?version=latest)](https://tsfel.readthedocs.io/en/latest/?badge=latest)
 [![license](https://img.shields.io/badge/License-BSD%203-brightgreen)](https://github.com/fraunhoferportugal/tsfel/blob/master/LICENSE.txt)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/tsfel)
 ![PyPI](https://img.shields.io/pypi/v/tsfel)
@@ -16,7 +16,7 @@ It does not requires installation as it relies on Google Colabs and a user inter
 ##### Offline
 Advanced users can take full potential of TSFEL by installing as a python package
 ```python
-pip install https://github.com/fraunhoferportugal/tsfel/archive/v0.1.3-dev.zip
+pip install tsfel
 ```
 
 ## Includes a comprehensive number of features
@@ -48,37 +48,6 @@ X = tsfel.time_series_features_extractor(cfg, df)
 
 ## Available features
 
-#### Spectral domain
-| Features                   | Computational Cost |
-|----------------------------|:------------------:|
-| FFT mean coefficient       |          1         |
-| Fundamental frequency      |          1         |
-| Human range energy         |          2         |
-| LPCC                       |          1         |
-| MFCC                       |          1         |
-| Max power spectrum         |          1         |
-| Maximum frequency          |          1         |
-| Median frequency           |          1         |
-| Power bandwidth            |          1         |
-| Spectral centroid          |          2         |
-| Spectral decrease          |          1         |
-| Spectral distance          |          1         |
-| Spectral kurtosis          |          2         |
-| Spectral maximum peaks     |          1         |
-| Spectral roll-off          |          1         |
-| Spectral roll-on           |          1         |
-| Spectral skewness          |          2         |
-| Spectral slope             |          1         |
-| Spectral spread            |          2         |
-| Spectral variation         |          1         |
-| Spectral entropy           |          1         |
-| Wavelet entropy            |          2         |
-| Wavelet absolute mean      |          2         |
-| Wavelet standard deviation |          2         |
-| Wavelet variance           |          2         |
-| Wavelet energy             |          2         |
-
-
 #### Statistical domain
 | Features                   | Computational Cost |
 |----------------------------|:------------------:|
@@ -109,18 +78,51 @@ X = tsfel.time_series_features_extractor(cfg, df)
 | Autocorrelation            |          1         |
 | Centroid                   |          1         |
 | Entropy                    |          1         |
-| Maximum peaks              |          1         |
 | Mean absolute diff         |          1         |
 | Mean diff                  |          1         |
 | Median absolute diff       |          1         |
 | Median diff                |          1         |
-| Minimum peaks              |          1         |
+| Negative turning points    |          1         |
 | Peak to peak distance      |          1         |
+| Positive turning points    |          1         |
 | Signal distance            |          1         |
 | Slope                      |          1         |
 | Sum absolute diff          |          1         |
 | Total energy               |          1         |
 | Zero crossing rate         |          1         |
+| Neighbourhood peaks        |          1         |
+
+
+#### Spectral domain
+| Features                          | Computational Cost |
+|-----------------------------------|:------------------:|
+| FFT mean coefficient              |          1         |
+| Fundamental frequency             |          1         |
+| Human range energy                |          2         |
+| LPCC                              |          1         |
+| MFCC                              |          1         |
+| Max power spectrum                |          1         |
+| Maximum frequency                 |          1         |
+| Median frequency                  |          1         |
+| Power bandwidth                   |          1         |
+| Spectral centroid                 |          2         |
+| Spectral decrease                 |          1         |
+| Spectral distance                 |          1         |
+| Spectral entropy                  |          1         |
+| Spectral kurtosis                 |          2         |
+| Spectral positive turning points  |          1         |
+| Spectral roll-off                 |          1         |
+| Spectral roll-on                  |          1         |
+| Spectral skewness                 |          2         |
+| Spectral slope                    |          1         |
+| Spectral spread                   |          2         |
+| Spectral variation                |          1         |
+| Wavelet absolute mean             |          2         |
+| Wavelet energy                    |          2         |
+| Wavelet standard deviation        |          2         |
+| Wavelet entropy                   |          2         |
+| Wavelet variance                  |          2         |
+
 
 ## Citing
 When using TSFEL please cite the following publication:

@@ -16,7 +16,7 @@ from IPython import get_ipython
 from IPython.display import display
 
 from tsfel.utils.progress_bar import display_progress_bar, progress_bar_notebook
-from tsfel.utils.signal_processing import merge_time_series, signal_window_spliter
+from tsfel.utils.signal_processing import merge_time_series, signal_window_splitter
 
 
 def dataset_features_extractor(main_directory, feat_dict, verbose=1, **kwargs):
@@ -82,6 +82,19 @@ def dataset_features_extractor(main_directory, feat_dict, verbose=1, **kwargs):
     features_path = kwargs.get('features_path', None)
     names = kwargs.get('header_names', None)
 
+    # Choosing default of n_jobs by operating system
+    if sys.platform[:-2] == 'win':
+        n_jobs_default = None
+    else:
+        n_jobs_default = -1
+
+    # Choosing default of n_jobs by python interface
+    if get_ipython().__class__.__name__ == 'ZMQInteractiveShell' or \
+            get_ipython().__class__.__name__ == 'Shell':
+        n_jobs_default = -1
+
+    n_jobs = kwargs.get('n_jobs', n_jobs_default)
+
     if main_directory[-1] != os.sep:
         main_directory = main_directory+os.sep
 
@@ -115,14 +128,19 @@ def dataset_features_extractor(main_directory, feat_dict, verbose=1, **kwargs):
 
         data_new = merge_time_series(pp_sensor_data, resample_rate, time_unit)
 
-        windows = signal_window_spliter(data_new, window_size, overlap)
+        windows = signal_window_splitter(data_new, window_size, overlap)
 
         if features_path:
             features = time_series_features_extractor(feat_dict, windows, fs=resample_rate, verbose=0,
-                                                      features_path=features_path, header_names=names)
+                                                      features_path=features_path, header_names=names, n_jobs=n_jobs)
         else:
             features = time_series_features_extractor(feat_dict, windows, fs=resample_rate, verbose=0,
-                                                      header_names=names)
+                                                      header_names=names, n_jobs=n_jobs)
+
+        fl = '/'.join(fl.split(os.sep))
+        invalid_char = '<>:"\|?* '
+        for char in invalid_char:
+            fl = fl.replace(char, '')
 
         pathlib.Path(output_directory + fl).mkdir(parents=True, exist_ok=True)
         features.to_csv(output_directory + fl + '/Features.csv', sep=',', encoding='utf-8')
@@ -163,7 +181,7 @@ def calc_features(wind_sig, dict_features, fs, **kwargs):
     return feat_val
 
 
-def time_series_features_extractor(dict_features, signal_windows, fs=None, window_spliter=False, verbose=1, **kwargs):
+def time_series_features_extractor(dict_features, signal_windows, fs=None, verbose=1, **kwargs):
     """Extraction of time series features.
 
     Parameters
@@ -174,8 +192,6 @@ def time_series_features_extractor(dict_features, signal_windows, fs=None, windo
         Input from which features are computed, window
     fs : int or None
         Sampling frequency
-    window_spliter: bool
-        If True computes the signal windows
     verbose : int
         Level of function communication
         (0 or 1 (Default))
@@ -203,7 +219,7 @@ def time_series_features_extractor(dict_features, signal_windows, fs=None, windo
     if verbose == 1:
         print("*** Feature extraction started ***")
 
-    window_size = kwargs.get('window_size', 100)
+    window_size = kwargs.get('window_size', None)
     overlap = kwargs.get('overlap', 0)
     features_path = kwargs.get('features_path', None)
     names = kwargs.get('header_names', None)
@@ -227,8 +243,8 @@ def time_series_features_extractor(dict_features, signal_windows, fs=None, windo
     if names is not None:
         names = list(names)
 
-    if window_spliter:
-        signal_windows = signal_window_spliter(signal_windows, window_size, overlap)
+    if window_size is not None:
+        signal_windows = signal_window_splitter(signal_windows, window_size, overlap)
 
     features_final = pd.DataFrame()
 
@@ -379,7 +395,7 @@ def calc_window_features(dict_features, signal_window, fs, **kwargs):
                     parameters_total = ''
 
                 # To handle object type signals
-                signal_window = signal_window.astype(float)
+                signal_window = np.array(signal_window).astype(float)
 
                 # Name of each column to be concatenate with feature name
                 if not isinstance(signal_window, pd.DataFrame):
