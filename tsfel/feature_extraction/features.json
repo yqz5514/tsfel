@@ -8,6 +8,7 @@
                 "fs": 100,
                 "nfreq": 256
             },
+            "n_features": "nfreq",
             "use": "yes"
         },
         "Fundamental frequency": {
@@ -17,6 +18,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Human range energy": {
@@ -26,6 +28,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "LPCC": {
@@ -35,6 +38,7 @@
             "parameters": {
                 "n_coeff": 12
             },
+            "n_features": "n_coeff",
             "use": "yes"
         },
         "MFCC": {
@@ -49,6 +53,7 @@
                 "num_ceps": 12,
                 "pre_emphasis": 0.97
             },
+            "n_features": "num_ceps",
             "use": "yes"
         },
         "Max power spectrum": {
@@ -58,6 +63,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Maximum frequency": {
@@ -67,6 +73,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Median frequency": {
@@ -76,6 +83,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Power bandwidth": {
@@ -85,6 +93,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Spectral centroid": {
@@ -94,6 +103,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Spectral decrease": {
@@ -103,6 +113,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Spectral distance": {
@@ -112,6 +123,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Spectral entropy": {
@@ -121,6 +133,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Spectral kurtosis": {
@@ -130,6 +143,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Spectral positive turning points": {
@@ -139,6 +153,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Spectral roll-off": {
@@ -148,6 +163,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Spectral roll-on": {
@@ -157,6 +173,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Spectral skewness": {
@@ -166,6 +183,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Spectral slope": {
@@ -175,6 +193,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Spectral spread": {
@@ -184,6 +203,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Spectral variation": {
@@ -193,6 +213,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Wavelet stats": {
@@ -214,6 +235,7 @@
             "parameters": {
                 "d": 10
             },
+            "n_features": "d",
             "use": "yes"
         },
         "ECDF Percentile": {
@@ -221,8 +243,9 @@
             "description": "Determines the percentile value of the ECDF.",
             "function": "tsfel.ecdf_percentile",
             "parameters": {
-                "percentile": null
+                "percentile": "[0.2, 0.8]"
             },
+            "n_features": "percentile",
             "use": "yes"
         },
         "ECDF Percentile Count": {
@@ -230,8 +253,9 @@
             "description": "Determines the cumulative sum of samples that are less than the percentile.",
             "function": "tsfel.ecdf_percentile_count",
             "parameters": {
-                "percentile": null
+                "percentile": "[0.2, 0.8]"
             },
+            "n_features": "percentile",
             "use": "yes"
         },
         "ECDF Slope": {
@@ -242,6 +266,7 @@
                 "p_end": 0.75,
                 "p_init": 0.5
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Histogram": {
@@ -252,6 +277,7 @@
                 "nbins": 10,
                 "r": 1
             },
+            "n_features": "nbins",
             "use": "yes"
         },
         "Interquartile range": {
@@ -259,6 +285,7 @@
             "description": "Computes interquartile range of the signal.",
             "function": "tsfel.interq_range",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Kurtosis": {
@@ -266,6 +293,7 @@
             "description": "Computes kurtosis of the signal.",
             "function": "tsfel.kurtosis",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Max": {
@@ -273,6 +301,7 @@
             "description": "Computes the maximum value of the signal.",
             "function": "tsfel.calc_max",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Mean": {
@@ -280,6 +309,7 @@
             "description": "Computes the mean value of the signal.",
             "function": "tsfel.calc_mean",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Mean absolute deviation": {
@@ -287,6 +317,7 @@
             "description": "Computes mean absolute deviation of the signal.",
             "function": "tsfel.mean_abs_deviation",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Median": {
@@ -294,6 +325,7 @@
             "description": "Computes median of the signal.",
             "function": "tsfel.calc_median",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Median absolute deviation": {
@@ -301,6 +333,7 @@
             "description": "Computes median absolute deviation of the signal.",
             "function": "tsfel.median_abs_deviation",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Min": {
@@ -308,6 +341,7 @@
             "description": "Computes the minimum value of the signal.",
             "function": "tsfel.calc_min",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Root mean square": {
@@ -315,6 +349,7 @@
             "description": "Computes root mean square of the signal.",
             "function": "tsfel.rms",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Skewness": {
@@ -322,6 +357,7 @@
             "description": "Computes skewness of the signal.",
             "function": "tsfel.skewness",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Standard deviation": {
@@ -329,6 +365,7 @@
             "description": "Computes standard deviation of the signal.",
             "function": "tsfel.calc_std",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Variance": {
@@ -336,6 +373,7 @@
             "description": "Computes variance of the signal.",
             "function": "tsfel.calc_var",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         }
     },
@@ -345,6 +383,7 @@
             "description": "Computes the absolute energy of the signal.",
             "function": "tsfel.abs_energy",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Area under the curve": {
@@ -354,6 +393,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Autocorrelation": {
@@ -361,6 +401,7 @@
             "description": "Computes autocorrelation of the signal.",
             "function": "tsfel.autocorr",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Centroid": {
@@ -370,6 +411,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Entropy": {
@@ -379,6 +421,7 @@
             "parameters": {
                 "prob": "standard"
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Mean absolute diff": {
@@ -386,6 +429,7 @@
             "description": "Computes mean absolute differences of the signal.",
             "function": "tsfel.mean_abs_diff",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Mean diff": {
@@ -393,6 +437,7 @@
             "description": "Computes mean of differences of the signal.",
             "function": "tsfel.mean_diff",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Median absolute diff": {
@@ -400,6 +445,7 @@
             "description": "Computes median absolute differences of the signal.",
             "function": "tsfel.median_abs_diff",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Median diff": {
@@ -407,6 +453,7 @@
             "description": "Computes median of differences of the signal.",
             "function": "tsfel.median_diff",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Negative turning points": {
@@ -414,6 +461,7 @@
             "description": "Computes number of negative turning points of the signal.",
             "function": "tsfel.negative_turning",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Neighbourhood peaks": {
@@ -423,6 +471,7 @@
             "parameters": {
                 "n": 10
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Peak to peak distance": {
@@ -430,6 +479,7 @@
             "description": "Computes the peak to peak distance.",
             "function": "tsfel.pk_pk_distance",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Positive turning points": {
@@ -437,6 +487,7 @@
             "description": "Computes number of positive turning points of the signal.",
             "function": "tsfel.positive_turning",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Signal distance": {
@@ -444,6 +495,7 @@
             "description": "Computes signal traveled distance.",
             "function": "tsfel.distance",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Slope": {
@@ -451,6 +503,7 @@
             "description": "Computes the slope of the signal by fitting a linear equation to the observed data.",
             "function": "tsfel.slope",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Sum absolute diff": {
@@ -458,6 +511,7 @@
             "description": "Computes sum of absolute differences of the signal.",
             "function": "tsfel.sum_abs_diff",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         },
         "Total energy": {
@@ -467,6 +521,7 @@
             "parameters": {
                 "fs": 100
             },
+            "n_features": 1,
             "use": "yes"
         },
         "Zero crossing rate": {
@@ -474,6 +529,7 @@
             "description": "Computes Zero-crossing rate of the signal.",
             "function": "tsfel.zero_cross",
             "parameters": "",
+            "n_features": 1,
             "use": "yes"
         }
     }
