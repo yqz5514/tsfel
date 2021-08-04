@@ -264,7 +264,6 @@ def lpc(signal, n_coeff=12):
 
 
 
-
 def create_xx(features):
     """Computes the range of features amplitude for the probability density function calculus.
     Parameters
