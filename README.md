@@ -47,7 +47,7 @@ X = tsfel.time_series_features_extractor(cfg, df)
 ```
 
 ## Available features
-
+ 
 #### Statistical domain
 | Features                   | Computational Cost |
 |----------------------------|:------------------:|
